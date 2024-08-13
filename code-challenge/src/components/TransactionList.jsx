@@ -1,11 +1,11 @@
 import React from 'react';
 
-const transactionlist = ({ transactions }) => {
+const TransactionList = ({ transactions }) => {
   return (
     <div>
-      <h2>Transaction List</h2>
-      <table>
-        <thead>
+      <h2 className="transaction-list">Transaction List</h2>
+      <table className="table">
+        <thead className="thead">
           <tr>
             <th>Date</th>
             <th>Description</th>
@@ -13,7 +13,7 @@ const transactionlist = ({ transactions }) => {
             <th>Amount</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="tbody">
           {transactions.map((transaction) => (
             <tr key={transaction.id}>
               <td>{transaction.date}</td>
@@ -28,4 +28,4 @@ const transactionlist = ({ transactions }) => {
   );
 };
 
-export default transactionlist;
+export default TransactionList;

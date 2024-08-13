@@ -1,9 +1,9 @@
-import { useState , useEffect} from 'react';
-import transactionlist from "./components/transactionlist.jsx";
-import transactionform from './components/transactionform.jsx';
+import { useState, useEffect } from 'react';
+import TransactionList from './components/TransactionList.jsx';
+import TransactionForm from './components/TransactionForm.jsx';
 import './App.css';
 
-// The main component for fecthing transaction data 
+// The main component for fetching transaction data 
 function App() {
   const [transactions, setTransactions] = useState([]);
   const [search, setSearch] = useState('');
@@ -18,7 +18,19 @@ function App() {
 
   // Addition of a new transaction
   const handleAddTransaction = (transaction) => {
-    setTransactions([...transactions, { ...transaction, id: Date.now() }]);
+    // Assuming a POST request would be needed here
+    fetch('http://localhost:3000/transactions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ ...transaction, id: Date.now() }),
+    })
+    .then((response) => response.json())
+    .then((newTransaction) => {
+      setTransactions([...transactions, newTransaction]);
+    })
+    .catch((error) => console.error('Error adding transaction:', error));
   };
 
   // Filter transactions based on description 
@@ -28,7 +40,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Bank of Flatiron</h1>
+      <h1 className="heading">Bank of Flatiron</h1>
       <TransactionForm onAddTransaction={handleAddTransaction} />
       <input
         type="text"
@@ -40,6 +52,5 @@ function App() {
     </div>
   );
 }
-          
 
 export default App;

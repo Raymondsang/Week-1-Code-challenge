@@ -59,4 +59,4 @@ function TransactionForm({ onAddTransaction }) {
   );
 }
 
-export default transactionform;
+export default TransactionForm;
