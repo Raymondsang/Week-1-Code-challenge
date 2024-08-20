@@ -10,7 +10,7 @@ function App() {
 
   // Fetch transactions data from my db.json
   useEffect(() => {
-    fetch('https://challenge-1-json.vercel.app/transactions')
+    fetch('json-server --watch db.json')
       .then((response) => response.json())
       .then((data) => setTransactions(data))
       .catch((error) => console.error('Error fetching transactions:', error));
@@ -19,7 +19,7 @@ function App() {
   // Addition of a new transaction
   const handleAddTransaction = (transaction) => {
     // Assuming a POST request would be needed here
-    fetch('https://challenge-1-json.vercel.app/transactions', {
+    fetch('json-server --watch db.json', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
